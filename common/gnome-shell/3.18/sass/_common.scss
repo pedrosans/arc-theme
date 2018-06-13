@@ -25,7 +25,7 @@ $asset_path: if($variant == 'dark', dark-assets, light-assets);
 //
 // Globals
 //
-$font-size: 10;
+$font-size: 11;
 $font-family: Ubuntu, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
@@ -960,13 +960,15 @@ StScrollBar {
 #panel .panel-button:hover {
   color: #242424;
   background-color: rgba(255, 255, 255, 0.15);
+  background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
   text-shadow: none;
 }
 
 #panel .panel-button:active, #panel .panel-button:overview, #panel .panel-button:focus, #panel .panel-button:checked {
-  background-color: #0046DB;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px rgba(0, 0, 0, 0.45);
+  background-image: none;
+  background-color: $selected_bg_color;
+  color: $selected_fg_color;
+  text-shadow: none;
   box-shadow: none;
 }
 
@@ -1017,8 +1019,10 @@ StScrollBar {
 }
 
 #panel.solid * {
-  color: $header_fg;
+/*
   color: $fg_color;
+*/
+  color: $header_fg;
 }
 #panel.solid {
 /*
@@ -1045,11 +1049,11 @@ StScrollBar {
 }
 
 #panel.solid .panel-button StLabel{
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #panel.solid .panel-button StLabel:first-child{
-	font-weight: normal;
+  font-weight: normal;
 }
 
 #panel.solid .panel-button:active, #panel.solid .panel-button:overview, #panel.solid .panel-button:focus, #panel.solid .panel-button:checked {
