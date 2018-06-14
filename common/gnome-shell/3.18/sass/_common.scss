@@ -1048,11 +1048,21 @@ StScrollBar {
   text-shadow: none;
 }
 
+#panel.solid .panel-button StIcon{
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  color: $header_fg;
+  color: $fg_color;
+}
+
 #panel.solid .panel-button StLabel{
   font-weight: bold;
+  color: $fg_color;
 }
 
 #panel.solid .panel-button StLabel:first-child{
+  color: $header_fg;
   font-weight: normal;
 }
 
