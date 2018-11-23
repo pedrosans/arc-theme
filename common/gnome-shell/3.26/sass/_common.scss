@@ -886,8 +886,9 @@ StScrollBar {
 //
 // Top Bar
 //
+/* NOTE: color of the entire top bar background */
 #panel {
-  background-color: #ffffff;
+  background-color: $header_bg;
   /* transition from solid to transparent */
   transition-duration: 250ms;
   height: 26px;
