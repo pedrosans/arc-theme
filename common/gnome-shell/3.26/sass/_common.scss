@@ -925,13 +925,13 @@ StScrollBar {
   padding: 0 4px;
 }
 
+/* NOTE: sets the topbar buttons background color. settings removed so buttons get '#panel.solid' color */
 #panel .panel-button {
   -natural-hpadding: 4px;
   -minimum-hpadding: 4px;
-  font-weight: bold;
-  color: #242424;
+  color: $header_fg;
+  color: $fg_color;
   text-shadow: none;
-  transition-duration: 150ms;
 }
 
 #panel .panel-button StLabel {
@@ -1016,9 +1016,6 @@ StScrollBar {
 }
 
 #panel.solid * {
-/*
-  color: $fg_color;
-*/
   color: $header_fg;
 }
 #panel.solid {
@@ -1041,29 +1038,18 @@ StScrollBar {
 }
 
 #panel.solid .panel-button {
-  color: #242424;
-  text-shadow: none;
 }
 
+/* NOTE: style of icons in the top bar */
 #panel.solid .panel-button StIcon{
-  /*
-  font-size: 10pt;
-  margin: 0;
-  padding: 0;
-  */
-  color: $header_fg;
-  color: $fg_color;
 }
 
+/* NOTE: style of labels in the top bar */
 #panel.solid .panel-button StLabel{
-  font-weight: bold;
-  font-weight: normal;
-  color: $fg_color;
 }
 
+/* NOTE: style of the locale icon at the top right */
 #panel.solid .panel-button StLabel:first-child{
-  color: $header_fg;
-  font-weight: normal;
 }
 
 #panel.solid .panel-button:active, #panel.solid .panel-button:overview, #panel.solid .panel-button:focus, #panel.solid .panel-button:checked {
