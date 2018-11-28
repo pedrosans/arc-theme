@@ -25,7 +25,7 @@ $asset_path: if($variant == 'dark', dark-assets, light-assets);
 //
 // Globals
 //
-$font-size: 11;
+$font-size: 10;
 $font-family: Ubuntu, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
@@ -926,11 +926,12 @@ StScrollBar {
   padding: 0 4px;
 }
 
-/* NOTE: sets the topbar buttons background color. settings removed so buttons get '#panel.solid' color */
+/* NOTE: sets the topbar buttons background color when no window title bar is near the panel.
+ * $hearder_fg and $fg_color are both good value options, the $fg_color was choosen for a better contrast.
+ */
 #panel .panel-button {
   -natural-hpadding: 4px;
   -minimum-hpadding: 4px;
-  color: $header_fg;
   color: $fg_color;
   text-shadow: none;
 }
@@ -955,13 +956,11 @@ StScrollBar {
   icon-shadow: none;
 }
 
+/* NOTE: affects any button on the top panel, it's best with no hover decoration */
 #panel .panel-button:hover {
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
-  text-shadow: none;
 }
 
+/* NOTE: activities button when checked */
 #panel .panel-button:active, #panel .panel-button:overview, #panel .panel-button:focus, #panel .panel-button:checked {
   background-image: none;
   background-color: $selected_bg_color;
@@ -1045,8 +1044,12 @@ StScrollBar {
 #panel.solid .panel-button StIcon{
 }
 
-/* NOTE: style of labels in the top bar */
+/* NOTE: style of labels in the top bar
+ * this color is picked only when a window is maximized or near the panel.
+ * otherwise "#panel .panel-button" color is useded instead.
+ */
 #panel.solid .panel-button StLabel{
+  color: $fg_color;
 }
 
 /* NOTE: style of the locale icon at the top right */
@@ -1727,8 +1730,8 @@ StScrollBar {
 .dash-label {
   border-radius: 3px;
   padding: 4px 12px;
-  color: $_shell_fg_color;
-  background-color: transparentize(black, 0.3);
+  color: $fg_color;
+  background-color: transparentize($bg_color, 0.3);
   text-align: center;
   -x-offset: 3px;
 
