@@ -1119,6 +1119,12 @@ StScrollBar {
   .label-shadow { color: transparent; }
 }
 
+/* NOTE: style of the application menu at the top left */
+#appMenu StLabel {
+  font-weight: bold; 
+  font-size: 14px;
+}
+
 .aggregate-menu {
   min-width: 23.5em;
   .popup-menu-icon { padding: 0 4px; }
