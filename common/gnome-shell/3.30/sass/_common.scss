@@ -989,15 +989,15 @@ StScrollBar {
       margin-left: 0px;
       margin-right: 0px;
 	  //IN
-  -st-icon-style: symbolic;
-  margin: 2px 24px;
+	  -st-icon-style: symbolic;
+	  margin: 2px 24px;
     }
 
 	  //IN
-    .popup-menu-arrow {
-	  width: 0;
-	  height: 0;
-	}
+		.popup-menu-arrow {
+		  width: 0;
+		  height: 0;
+		}
     .system-status-icon,
     .app-menu-icon > StIcon,
     .popup-menu-arrow {
@@ -1005,10 +1005,16 @@ StScrollBar {
     }
 
     &:hover {
+		//OUT
       color: $_panel_fg_color;
       background-color: transparentize(black, 0.83);
       border-bottom-width: 1px;
       border-color: transparent;
+	  //IN
+	  color: #242424;
+	  background-color: rgba(255, 255, 255, 0.15);
+	  background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
+	  text-shadow: none;
 
       .system-status-icon,
       .app-menu-icon > StIcon,
@@ -1018,21 +1024,42 @@ StScrollBar {
     }
 
     &:active, &:overview, &:focus, &:checked {
+	  //OUT
       color: $selected_fg_color;
       background-color: $selected_bg_color;
       box-shadow: none;
       border-bottom-width: 1px;
       border-color: black;
+	  //IN
+	  background-image: none;
+	  background-color: $selected_bg_color;
+	  color: $selected_fg_color;
+	  text-shadow: none;
+	  box-shadow: none;
 
       & > .system-status-icon { icon-shadow: none; }
     }
 
-    .system-status-icon { color: $selected_fg_color; icon-size: 16px; padding: 0 4px; }
+    .system-status-icon {
+		//OUT
+		color: $selected_fg_color; icon-size: 16px; padding: 0 4px;
+		//IN
+		icon-size: 16px;
+		padding: 0 4px;
+	}
     .unlock-screen &,
     .login-screen &,
     .lock-screen & {
+		//OUT
       color: lighten($fg_color, 10%);
-      &:focus, &:hover, &:active { color: lighten($fg_color, 10%); }
+	  //IN
+	  color: rgba(255, 255, 255, 0.7);
+      &:focus, &:hover, &:active {
+		  //OUT
+		  color: lighten($fg_color, 10%); 
+		  //IN
+		  color: rgba(255, 255, 255, 0.85);
+	  }
     }
   }
 
@@ -1061,9 +1088,38 @@ StScrollBar {
 
   .popup-menu-arrow { width: 0; }
 }
+	//IN
+#panel.solid * {
+/*
+  color: $fg_color;
+*/
+  color: $header_fg;
+}
+	//IN
+#panel.solid {
+/*
+  background-color: #ffffff;
+*/
+  background-color: opacify($header_bg, 1);
+  /* transition from transparent to solid */
+  transition-duration: 250ms;
+  background-gradient-direction: none;
+  text-shadow: none;
+}
+	//IN
+#panel.solid:overview {
+  background-color: transparent;
+}
+	//IN
+#panel.solid .panel-corner {
+  -panel-corner-background-color: #ffffff;
+}
 
 // Activities button
 #panel #panelActivities.panel-button {
+	//IN
+  color: #242424;
+  text-shadow: none;
 
   > * {
     background-image: url("common-assets/panel/activities.svg");
