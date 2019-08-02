@@ -25,12 +25,16 @@ $asset_path: if($variant == 'dark', dark-assets, light-assets);
 //
 // Globals
 //
-$font-size: 10;
-$font-family: Futura Bk bt, Cantarell, Sans-Serif;
+$font-size: 11;
+$font-family: Ubuntu, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: transparentize($osd_fg_color,0.8);
-$_shell_fg_color: white;
+$_shell_fg_color: $header_fg;
+ 
+* {
+	font-weight: normal;
+}
 
 stage {
   font-family: $font-family;
@@ -895,7 +899,13 @@ StScrollBar {
 //
 #panel {
   $_panel_fg_color: $_shell_fg_color;
+  //IN
+  background-color: #ffffff;
+  /* transition from solid to transparent */
+  transition-duration: 250ms;
+  height: 26px;
 
+  //OUT
   font-weight: bold;
   height: 2.1em;
   min-height: 27px;
@@ -910,32 +920,57 @@ StScrollBar {
   &.unlock-screen,
   &.login-screen,
   &.lock-screen {
+	  //OUT
     background-color: transparent;
     border-image: none;
+	//IN
+  background-color: rgba(255, 255, 255, 0.35);
   }
 
   &:overview { border-image: url('common-assets/panel/panel-overview.svg') 1 1 1 1; }
 
   #panelLeft, #panelCenter { // spacing between activities<>app menu and such
+	//OUT
     spacing: 8px;
+	//IN
+  spacing: 0;
   }
 
   .panel-corner {
+	  //OUT
     -panel-corner-radius: $panel-corner-radius;
     -panel-corner-background-color: transparentize(black, 1);
     -panel-corner-border-width: 0px;
     -panel-corner-border-color: black;
+	//IN
+  -panel-corner-radius: 0;
+  -panel-corner-background-color: #ffffff;
+  -panel-corner-border-width: 2px;
+  -panel-corner-border-color: transparent;
 
     &:active, &:overview, &:focus {
+		//OUT
       -panel-corner-border-color: black;
+	  //IN
+  -panel-corner-border-color: rgba(255, 255, 255, 0.85);
     }
 
     &.lock-screen, &.login-screen, &unlock-screen {
+		//OUT
       -panel-corner-radius: 0;
       -panel-corner-background-color: transparent;
       -panel-corner-border-color: transparent;
+	  //IN
+  -panel-corner-radius: 0;
+  -panel-corner-background-color: transparent;
+  -panel-corner-border-color: transparent;
     }
   }
+
+  //IN
+#panel .panel-corner StLabel {
+  padding: 0 4px;
+}
 
   .panel-button {
     -natural-hpadding: 10px;
@@ -948,12 +983,21 @@ StScrollBar {
     border-color: transparent;
 
     .app-menu-icon {
+		//OUT
       width: 0;
       height: 0;
       margin-left: 0px;
       margin-right: 0px;
+	  //IN
+  -st-icon-style: symbolic;
+  margin: 2px 24px;
     }
 
+	  //IN
+    .popup-menu-arrow {
+	  width: 0;
+	  height: 0;
+	}
     .system-status-icon,
     .app-menu-icon > StIcon,
     .popup-menu-arrow {
