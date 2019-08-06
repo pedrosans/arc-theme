@@ -30,7 +30,7 @@ $font-family: Futura Bk bt, Cantarell, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color,0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: transparentize($osd_fg_color,0.8);
-$_shell_fg_color: white;
+$_shell_fg_color: $fg_color;
 
 stage {
   font-family: $font-family;
@@ -929,14 +929,15 @@ StScrollBar {
 #panel {
   $_panel_fg_color: $_shell_fg_color;
 
+  * {
+    color: $_panel_fg_color;
+  }
+
   font-weight: bold;
   font-feature-settings: "tnum";
   height: 2.1em;
   min-height: 27px;
-  background-gradient-direction: none;
-  background-color: transparent;
-  border-bottom-width: 0;
-  border-image: url('common-assets/panel/panel.svg') 1 1 1 1;
+  background-color: opacify($header_bg, 1);
 
   // Fix dynamic top bar extension
   &.dynamic-top-bar-white-btn { border-image: none; }
@@ -947,8 +948,6 @@ StScrollBar {
     background-color: transparent;
     border-image: none;
   }
-
-  &:overview { border-image: url('common-assets/panel/panel-overview.svg') 1 1 1 1; }
 
   #panelLeft, #panelCenter { // spacing between activities<>app menu and such
     spacing: 8px;
@@ -975,7 +974,6 @@ StScrollBar {
     -natural-hpadding: 10px;
     -minimum-hpadding: 6px;
     font-weight: bold;
-    color: $_panel_fg_color;
     text-shadow: none;
     transition-duration: 100ms;
     border-bottom-width: 1px;
@@ -1018,7 +1016,7 @@ StScrollBar {
       & > .system-status-icon { icon-shadow: none; }
     }
 
-    .system-status-icon { color: $selected_fg_color; icon-size: 16px; padding: 0 4px; }
+    .system-status-icon { color: $_panel_fg_color; icon-size: 16px; padding: 0 4px; }
     .unlock-screen &,
     .login-screen &,
     .lock-screen & {
@@ -1027,16 +1025,12 @@ StScrollBar {
     }
   }
 
-  .panel-button > *{
-    color: $selected_fg_color;
-  }
-
     #panelActivities.panel-button { -natural-hpadding: 12px; }
 
+  // DOC: #appMenu style, the app name at the top left
   .panel-status-indicators-box,
   .panel-status-menu-box {
     spacing: 2px;
-    color: $selected_fg_color;
   }
 
   // spacing between power icon and (optional) percentage label
@@ -1115,15 +1109,14 @@ StScrollBar {
 
 .system-menu-action {
   -st-icon-style: symbolic;
+  color: $_shell_fg_color;
   padding: 13px;
-  color: $fg_color;
   border-radius: 32px; /* wish we could do 50% */
   border: 1px solid transparent;
 
   &:hover, &:focus {
     transition-duration: 100ms;
     padding: 13px;
-    color: $fg_color;
     background-color: transparent;
     border: 1px solid $selected_bg_color;
   }
