@@ -1660,12 +1660,11 @@ StScrollBar {
 
 #dash {
   @include fontsize($font-size);
-  color: $osd_fg_color;
-  background-color: $dark_sidebar_bg;
   border: 1px solid rgba(0,0,0,0.4);
   border-left: 0px;
+  color: $header_fg;
+  background-color: opacify($header_bg, 1);
   padding: 4px 0;
-  border-radius: 0 3px 3px 0;
 
   &:rtl { border-radius: 3px 0 0 3px; }
 
@@ -1702,7 +1701,7 @@ StScrollBar {
   border-radius: 3px;
   padding: 4px 12px;
   color: $_shell_fg_color;
-  background-color: transparentize(black, 0.3);
+  background-color: transparentize($bg_color, 0.3);
   text-align: center;
   -x-offset: 3px;
 
@@ -1735,6 +1734,7 @@ StScrollBar {
     height: 2px;
     margin-bottom: 2px;
     background-color: $selected_bg_color;
+    box-shadow: none;
   }
 }
 
