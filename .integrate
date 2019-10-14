@@ -1,0 +1,15 @@
+#!/bin/bash
+# there is an expectation that the LAUNCH_SCRIPT will be executed
+# in the same bash where this script is sourced
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export LAUNCH_SCRIPT="cd $DIR && rm -f common/gtk-3.0/3.20/gtk*.css "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  sudo rm -f common/gtk-3.0/3.20/dark/* "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  sudo rm -f common/gtk-3.0/3.20/darker/* "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  sudo rm -f common/gtk-3.0/3.20/light/* "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  ./autogen.sh --prefix=/usr && sudo make install "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  /usr/bin/gsettings set org.gnome.desktop.interface gtk-theme Arc-Dark "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  /usr/bin/gsettings set org.gnome.desktop.interface gtk-theme Arc "
+export LAUNCH_SCRIPT="$LAUNCH_SCRIPT ;  klayout pc "
+# export LAUNCH_SCRIPT=" && gsettings set org.gnome.desktop.interface gtk-theme Arc-dark && gsettings set org.gnome.desktop.interface gtk-theme Arc"
+#export LAUNCH_SCRIPT="$LAUNCH_SCRIPT && gsettings reset org.gnome.shell enabled-extensions "
+#export LAUNCH_SCRIPT="$LAUNCH_SCRIPT && gnome-shell-extension-tool -e 'user-theme@gnome-shell-extensions.gcampax.github.com'"
