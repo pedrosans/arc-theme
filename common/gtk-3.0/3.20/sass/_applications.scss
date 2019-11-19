@@ -404,12 +404,6 @@ workbench.csd > stack.titlebar:not(headerbar) {
   background: none;
   border: none;
   box-shadow: none;
-
-  headerbar {
-    &,
-    &:first-child,
-    &:last-child { border-radius: $_header_radius $_header_radius 0 0; }
-  }
 }
 
 editortweak .linked > entry.search:focus + .gb-linked-scroller { border-top-color: $selected_bg_color; }
