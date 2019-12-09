@@ -977,10 +977,7 @@ headerbar,
   padding: 0 7px;
 
   border-radius: 0;
-  border: 1px solid $decoration_border_color;
-  &:backdrop {
-	  border-color: $decoration_border_color_unfocused;
-  }
+  border: none;
 
   color: $header_fg;
   background-color: opacify($header_bg, 1);
@@ -3073,7 +3070,8 @@ stackswitcher button {
 
 decoration {
   border-radius: 0;
-  border: 1px solid $decoration_border_color;
+  border: none;
+
   .maximized &{
     border: none
   }
@@ -3083,10 +3081,8 @@ decoration {
   margin: 10px;
 
   &:backdrop {
-    border-color: $decoration_border_color_unfocused;
     // the transparent shadow here is to enforce that the shadow extents don't
     // change when we go to backdrop, to prevent jumping windows
-    box-shadow: none;
     transition: $backdrop_transition;
   }
   .fullscreen &,
@@ -3099,19 +3095,23 @@ decoration {
   }
   // server-side decorations as used by mutter
   .ssd & {
-    background: $decoration_border_color;
     border-radius: 0;
-    box-shadow: none;
-	&:backdrop { box-shadow: none }
-    &.maximized { border-radius: 0; }
+    box-shadow: 0 0 0 1px $decoration_border_color;
+	&:backdrop { box-shadow: 0 0 0 1px $decoration_border_color_unfocused; }
+  }
+  .csd & {
+    box-shadow: 0 0 0 1px $decoration_border_color;
+	&:backdrop { box-shadow: 0 0 0 1px $decoration_border_color_unfocused; }
   }
   .csd.popup & {
     border-radius: 0;
-    box-shadow: none;
+    box-shadow: 0 0 0 1px $decoration_border_color;
+	&:backdrop { box-shadow: 0 0 0 1px $decoration_border_color_unfocused; }
   }
   tooltip.csd & {
     border-radius: 0;
-    box-shadow: none;
+    box-shadow: 0 0 0 1px $decoration_border_color;
+	&:backdrop { box-shadow: 0 0 0 1px $decoration_border_color_unfocused; }
   }
   messagedialog.csd & {
     border-radius: 3px;
